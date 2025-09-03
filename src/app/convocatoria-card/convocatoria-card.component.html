@@ -1,0 +1,32 @@
+<div class="card mb-3 convocatoria-card" (click)="verDetalle.emit()">
+  <div class="card-body">
+    <div class="d-flex justify-content-between align-items-start">
+      <h5 class="card-title">{{convocatoria?.descripcion ?? 'Sin descripción'}}</h5>
+    </div>
+    <h6 class="card-subtitle mb-2 text-muted">{{convocatoria?.organo?.nivel2 ?? 'Sin administración'}}</h6>
+    <p class="card-text">
+      {{convocatoria?.descripcionFinalidad ?? convocatoria?.descripcion ?? 'Sin descripción' | slice:0:200}}...
+    </p>
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <span class="badge bg-light text-dark me-1" *ngFor="let sector of convocatoria?.sectores ?? []">
+          {{sector.descripcion}}
+        </span>
+      </div>
+      <small class="text-muted">Publicado: {{convocatoria?.fechaRecepcion | date:'dd/MM/yyyy'}}</small>
+    </div>
+  </div>
+  <div class="card-footer bg-transparent d-flex justify-content-between">
+    <small>
+      Plazo: {{convocatoria?.fechaInicioSolicitud | date:'dd/MM/yyyy'}} - {{convocatoria?.fechaFinSolicitud | date:'dd/MM/yyyy'}}
+    </small>
+    <div>
+      <button class="btn btn-sm btn-outline-primary me-1" (click)="toggleFavorita.emit($event); $event.stopPropagation();">
+        <i class="fas" [ngClass]="convocatoria?.favorita ? 'fa-heart' : 'fa-heart-o'"></i>
+      </button>
+      <button class="btn btn-sm btn-outline-secondary">
+        <i class="fas fa-share-alt"></i>
+      </button>
+    </div>
+  </div>
+</div>

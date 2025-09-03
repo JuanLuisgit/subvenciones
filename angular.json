@@ -62,7 +62,8 @@
               "buildTarget": "subvenciones:build:production"
             },
             "development": {
-              "buildTarget": "subvenciones:build:development"
+              "buildTarget": "subvenciones:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

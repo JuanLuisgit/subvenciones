@@ -1,0 +1,8 @@
+{
+  "/bdnstrans": {
+    "target": "https://www.infosubvenciones.es",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+    }
+}
