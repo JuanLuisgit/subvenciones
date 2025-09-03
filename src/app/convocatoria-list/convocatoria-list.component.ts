@@ -16,4 +16,17 @@ export class ConvocatoriaListComponent {
   @Output() toggleFavorita = new EventEmitter<{convocatoria: any, event: Event}>();
   @Input() convocatorias: any[] = [];
   @Output() limpiarFiltros = new EventEmitter<void>();
+  @Input() paginaActual: number = 0;
+@Input() totalPaginas: number = 0;
+@Output() cambiarPagina = new EventEmitter<number>();
+
+/* Helper para mostrar sólo 5 números centrados */
+get paginasVisibles(): number[] {
+  const total = this.totalPaginas;
+  const actual = this.paginaActual;
+  const delta = 2;
+  const left = Math.max(0, actual - delta);
+  const right = Math.min(total - 1, actual + delta);
+  return Array.from({ length: right - left + 1 }, (_, i) => left + i);
+}
 }

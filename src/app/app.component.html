@@ -15,6 +15,9 @@
             <app-convocatoria-list
                 [convocatoriasFiltradas]="convocatoriasFiltradas"
                 [cargando]="cargando"
+                [paginaActual]="paginaActual"
+                [totalPaginas]="totalPaginas"
+                (cambiarPagina)="cambiarPagina($event)"
                 (verDetalle)="verDetalle($event)"
                 (toggleFavorita)="toggleFavorita($event.convocatoria, $event.event)"
                 (limpiarFiltros)="limpiarFiltros()">

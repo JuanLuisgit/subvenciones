@@ -144,19 +144,23 @@ cargarConvocatorias(page: number = 0) {
     }
   }
 
-  verDetalle(convocatoria: Convocatoria) {
-    alert(`Detalle de: ${convocatoria.descripcion}`);
-  }
+    verDetalle(convocatoria: Convocatoria) {
+      alert(`Detalle de: ${convocatoria.descripcion}`);
+      }
 
-  toggleFavorita(convocatoria: Convocatoria, event: Event) {
-    event.stopPropagation();
-    // Aquí normalmente haríamos una llamada al backend
-    convocatoria['favorita'] = !convocatoria['favorita'];
-    if (convocatoria['favorita']) {
-      console.log(`Añadida a favoritos: ${convocatoria.descripcion}`);
-    } else {
-      console.log(`Eliminada de favoritos: ${convocatoria.descripcion}`);
-    }
-  }
- 
+    toggleFavorita(convocatoria: Convocatoria, event: Event) {
+      event.stopPropagation();
+      // Aquí normalmente haríamos una llamada al backend
+      convocatoria['favorita'] = !convocatoria['favorita'];
+      if (convocatoria['favorita']) {
+        console.log(`Añadida a favoritos: ${convocatoria.descripcion}`);
+      } else {
+        console.log(`Eliminada de favoritos: ${convocatoria.descripcion}`);
+      }
+        }
+        cambiarPagina(nuevaPag: number) {
+  if (nuevaPag < 0 || nuevaPag >= this.totalPaginas) return;
+  this.paginaActual = nuevaPag;
+  this.cargarConvocatorias(nuevaPag);   // llama a la API con la nueva página
+}
 }
