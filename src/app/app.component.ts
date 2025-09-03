@@ -90,23 +90,23 @@ cargarConvocatorias(page: number = 0) {
           const keyword = this.filters.keyword.toLowerCase();
           cumpleFiltro = cumpleFiltro && (
             convocatoria.descripcion?.toLowerCase().includes(keyword) ||
-            convocatoria.organo.nivel2?.toLowerCase().includes(keyword) ||
-            convocatoria.sectores.some(s => s.descripcion.toLowerCase().includes(keyword))
+            convocatoria.organo?.nivel2?.toLowerCase().includes(keyword) ||
+            convocatoria.sectores?.some(s => s.descripcion.toLowerCase().includes(keyword))
           );
         }
         // Filtro por administración
         if (this.filters.administracion) {
-          cumpleFiltro = cumpleFiltro && (convocatoria.organo.nivel2 === this.filters.administracion);
+          cumpleFiltro = cumpleFiltro && (convocatoria.organo?.nivel2 === this.filters.administracion);
         }
         // Filtro por sector
         if (this.filters.sector) {
-          cumpleFiltro = cumpleFiltro && convocatoria.sectores.some(s => s.descripcion === this.filters.sector);
+          cumpleFiltro = cumpleFiltro && convocatoria.sectores?.some(s => s.descripcion === this.filters.sector);
         }
        
         
         // Filtro por fecha de publicación
         if (this.filters.fecha) {
-          cumpleFiltro = cumpleFiltro && convocatoria.fechaRecepcion?.startsWith(this.filters.fecha);
+          cumpleFiltro = cumpleFiltro && convocatoria?.fechaRecepcion?.startsWith(this.filters.fecha);
         }
         return cumpleFiltro;
       });
