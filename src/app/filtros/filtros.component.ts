@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -8,53 +8,46 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./filtros.component.css'],
   imports: [FormsModule, CommonModule]
 })
-export class FiltrosComponent {
+export class FiltrosComponent implements OnChanges {
 
-  filtros: any = {
-    estado: '',
-    ambito: '',
-    organismo: '',
+  // mismo shape que usa AppComponent
+  filtros = {
     keyword: '',
-    sector: ''
+    administracion: '',
+    sector: '',
+    estado: '',
+    fecha: ''
   };
 
-  @Output() filtrosAplicados = new EventEmitter<any>();
-  @Output() filtrosLimpiados = new EventEmitter<void>();
+  /*  Inputs que recibe del padre  */
+  @Input() administraciones: string[] = [];
+  @Input() sectores: string[] = [];
+  @Input() filters!: typeof this.filtros;   // valores iniciales / tras limpiar
 
-  aplicarFiltros() {
-    this.filtrosAplicados.emit(this.filtros);
+  /*  Outputs que el padre espera  */
+  @Output() aplicarFiltros = new EventEmitter<typeof this.filtros>();
+  @Output() limpiarFiltros = new EventEmitter<void>();
+
+  ngOnChanges(): void {
+    // sincroniza cuando el padre resetea filters
+    if (this.filters) this.filtros = { ...this.filters };
   }
 
-  limpiarFiltros() {
+  /*  emite valores al padre  */
+  onAplicar(): void {
+    this.aplicarFiltros.emit(this.filtros);
+  }
+
+  onLimpiar(): void {
     this.filtros = {
-      ambito: '',
-      organismo: '',
       keyword: '',
-      sector: ''
+      administracion: '',
+      sector: '',
+      estado: '',
+      fecha: ''
     };
-    this.filtrosLimpiados.emit();
-  }
-  // 🔹 Paginación
-  paginaActual: number = 0;
-  totalPaginas: number = 100;
-
-  // 🔹 Inputs que vienen del padre (AppComponent)
-  @Input() administraciones: any[] = [];
-  @Input() sectores: any[] = [];
-  @Input() filters: any = {};
-
-  // 🔹 Outputs (para enviar eventos al padre)
-  @Output() filtrosCambiados = new EventEmitter<any>();
-
-  // 🔹 Método de paginación
-  cargarConvocatorias(pagina: number): void {
-    if (pagina >= 0 && pagina < this.totalPaginas) {
-      this.paginaActual = pagina;
-      console.log('➡️ Pidiendo convocatorias de la página', this.paginaActual);
-      this.filtrosCambiados.emit({
-        ...this.filters,
-        pagina: this.paginaActual
-      });
-    }
+    this.limpiarFiltros.emit();
   }
 }
+  
+

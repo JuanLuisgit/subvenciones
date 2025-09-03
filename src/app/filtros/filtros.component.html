@@ -1,44 +1,45 @@
-<div class="card p-3 mb-3">
-  <form (ngSubmit)="aplicarFiltros()" class="row g-3">
-    <!-- Ámbito -->
-    <div class="col-md-3">
-      <label for="ambito" class="form-label">Ámbito</label>
-      <select id="ambito" class="form-select" [(ngModel)]="filtros.ambito" name="ambito">
-        <option value="">Todos</option>
-        <option value="NACIONAL">Nacional</option>
-        <option value="AUTONOMICO">Autonómico</option>
-        <option value="LOCAL">Local</option>
-      </select>
-    </div>
+<!-- Estado -->
+<div class="col-md-3">
+  <label for="estado" class="form-label">Estado</label>
+  <select id="estado" class="form-select" [(ngModel)]="filters.estado" name="estado">
+    <option value="">Todos</option>
+    <option value="abierta">Abierta</option>
+    <option value="cerrada">Cerrada</option>
+  </select>
+</div>
 
-    <!-- Organismo -->
-    <div class="col-md-3">
-      <label for="organismo" class="form-label">Organismo</label>
-      <input type="text" id="organismo" class="form-control"
-             [(ngModel)]="filtros.organismo" name="organismo"
-             placeholder="Ej: Ministerio de Industria">
-    </div>
+<!-- Administración -->
+<div class="col-md-3">
+  <label for="administracion" class="form-label">Administración</label>
+  <select id="administracion" class="form-select" [(ngModel)]="filters.administracion" name="administracion">
+    <option value="">Todas</option>
+    <option *ngFor="let adm of administraciones" [value]="adm">{{ adm }}</option>
+  </select>
+</div>
 
-    <!-- Palabra clave -->
-    <div class="col-md-3">
-      <label for="keyword" class="form-label">Palabra clave</label>
-      <input type="text" id="keyword" class="form-control"
-             [(ngModel)]="filtros.keyword" name="keyword"
-             placeholder="Ej: Energía">
-    </div>
+<!-- Sector -->
+<div class="col-md-3">
+  <label for="sector" class="form-label">Sector</label>
+  <select id="sector" class="form-select" [(ngModel)]="filters.sector" name="sector">
+    <option value="">Todos</option>
+    <option *ngFor="let sec of sectores" [value]="sec">{{ sec }}</option>
+  </select>
+</div>
 
-    <!-- Sector -->
-    <div class="col-md-3">
-      <label for="sector" class="form-label">Sector</label>
-      <input type="text" id="sector" class="form-control"
-             [(ngModel)]="filtros.sector" name="sector"
-             placeholder="Ej: Agricultura">
-    </div>
+<!-- Palabra clave -->
+<div class="col-md-3">
+  <label for="keyword" class="form-label">Palabra clave</label>
+  <input type="text" id="keyword" class="form-control" [(ngModel)]="filters.keyword" name="keyword" placeholder="Ej: digitalización">
+</div>
 
-    <!-- Botones -->
-    <div class="col-12 d-flex justify-content-end mt-3">
-      <button type="submit" class="btn btn-primary me-2">Aplicar filtros</button>
-      <button type="button" class="btn btn-secondary" (click)="limpiarFiltros()">Limpiar</button>
-    </div>
-  </form>
+<!-- Fecha (publicación) -->
+<div class="col-md-3">
+  <label for="fecha" class="form-label">Fecha publicación</label>
+  <input type="date" id="fecha" class="form-control" [(ngModel)]="filters.fecha" name="fecha">
+</div>
+
+<!-- Botones -->
+<div class="col-12 d-flex justify-content-end mt-3">
+  <button type="button" class="btn btn-primary me-2" (click)="onAplicar()">Aplicar filtros</button>
+  <button type="button" class="btn btn-secondary" (click)="onLimpiar()">Limpiar</button>
 </div>
