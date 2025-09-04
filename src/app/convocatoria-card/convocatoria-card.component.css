@@ -1,1 +1,8 @@
 /* Estilos específicos para la tarjeta de convocatoria */
+/* deja que el click de la tarjeta llegue aunque haya botones encima */
+.btn {
+  pointer-events: auto;   /* botones sí reciben clicks */
+}
+.card {
+  cursor: pointer;
+}

@@ -1,7 +1,7 @@
 <!-- Estado -->
 <div class="col-md-3">
   <label for="estado" class="form-label">Estado</label>
-  <select id="estado" class="form-select" [(ngModel)]="filters.estado" name="estado">
+  <select id="estado" class="form-select" [(ngModel)]="filtros.estado" name="estado">
     <option value="">Todos</option>
     <option value="abierta">Abierta</option>
     <option value="cerrada">Cerrada</option>
@@ -11,7 +11,7 @@
 <!-- Administración -->
 <div class="col-md-3">
   <label for="administracion" class="form-label">Administración</label>
-  <select id="administracion" class="form-select" [(ngModel)]="filters.administracion" name="administracion">
+  <select id="administracion" class="form-select" [(ngModel)]="filtros.administracion" name="administracion">
     <option value="">Todas</option>
     <option *ngFor="let adm of administraciones" [value]="adm">{{ adm }}</option>
   </select>
@@ -20,7 +20,7 @@
 <!-- Sector -->
 <div class="col-md-3">
   <label for="sector" class="form-label">Sector</label>
-  <select id="sector" class="form-select" [(ngModel)]="filters.sector" name="sector">
+  <select id="sector" class="form-select" [(ngModel)]="filtros.sector" name="sector">
     <option value="">Todos</option>
     <option *ngFor="let sec of sectores" [value]="sec">{{ sec }}</option>
   </select>
@@ -29,13 +29,13 @@
 <!-- Palabra clave -->
 <div class="col-md-3">
   <label for="keyword" class="form-label">Palabra clave</label>
-  <input type="text" id="keyword" class="form-control" [(ngModel)]="filters.keyword" name="keyword" placeholder="Ej: digitalización">
+  <input type="text" id="keyword" class="form-control" [(ngModel)]="filtros.keyword" name="keyword" placeholder="Ej: digitalización">
 </div>
 
 <!-- Fecha (publicación) -->
 <div class="col-md-3">
   <label for="fecha" class="form-label">Fecha publicación</label>
-  <input type="date" id="fecha" class="form-control" [(ngModel)]="filters.fecha" name="fecha">
+  <input type="date" id="fecha" class="form-control" [(ngModel)]="filtros.fecha" name="fecha">
 </div>
 
 <!-- Botones -->
