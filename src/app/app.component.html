@@ -6,9 +6,10 @@
                 [administraciones]="administraciones"
                 [sectores]="sectores"
                 [filters]="filters"
-                (aplicarFiltros)="aplicarFiltros()"
+                (aplicarFiltros)="aplicarFiltrosDesdeHijo($event)"
                 (limpiarFiltros)="limpiarFiltros()">
             </app-filtros>
+
             <app-info-destacada></app-info-destacada>
         </div>
         <div class="col-md-9">

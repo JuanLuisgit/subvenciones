@@ -24,7 +24,7 @@ export class ConvocatoriaService {
       direccion: 'desc',
       fechaDesde: '01/01/2023',
       fechaHasta: '31/12/2025',    
-      vpd: 'GE',
+      //vpd: 'GE',
       plazo: '',
       estado: '',
       ambito: '',

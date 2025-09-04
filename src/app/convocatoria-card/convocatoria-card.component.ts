@@ -11,21 +11,20 @@ import { Convocatoria } from '../models/convocatoria.model';
 })
 export class ConvocatoriaCardComponent {
   @Input() convocatoria: Convocatoria | undefined;
-  @Output() verDetalle = new EventEmitter<void>();
   @Output() toggleFavorita = new EventEmitter<Event>();
-  @Output() abrirEnlace = new EventEmitter<string>();
-  
 
-  onVerDetalle() {
-    this.verDetalle.emit();
-  }
   onToggleFavorita(event: Event) {
     event.stopPropagation();  
     this.toggleFavorita.emit(event);
+
   }
-
-  onAbrirEnlace(url: string) {
-    this.abrirEnlace.emit(url);
-  } 
-
+  abrirSede(url?: string) {
+    if (url) {
+      window.open(url,'_blank', 'noopener,noreferrer');
+    }
+    else{
+      console.warn('No hay URL de sede electrónica disponible.');
+    }
+}
+  
 }

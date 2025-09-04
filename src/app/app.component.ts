@@ -102,7 +102,15 @@ cargarConvocatorias(page: number = 0) {
         if (this.filters.sector) {
           cumpleFiltro = cumpleFiltro && convocatoria.sectores?.some(s => s.descripcion === this.filters.sector);
         }
-       
+        // Filtro por estado
+          // if (this.filters.estado) {
+          //   if (this.filters.estado === 'abierta') {
+          //     cumpleFiltro = cumpleFiltro && convocatoria.abierto === true;
+          //   } else if (this.filters.estado === 'cerrada') {
+          //     cumpleFiltro = cumpleFiltro && convocatoria.abierto === false;
+          //   }
+          // }
+
         
         // Filtro por fecha de publicación
         if (this.filters.fecha) {
@@ -113,6 +121,10 @@ cargarConvocatorias(page: number = 0) {
       this.ordenarConvocatorias();
       this.cargando = false;
     }, 500);
+  }
+    aplicarFiltrosDesdeHijo(filtros: any) {
+    this.filters = filtros;  // 🔄 sincroniza con el estado del padre
+    this.aplicarFiltros();
   }
 
   limpiarFiltros() {
