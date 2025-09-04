@@ -1,6 +1,9 @@
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { forkJoin } from 'rxjs';
+import { ConvocatoriaService } from '../services/convocatoria.service';
+import { Convocatoria } from '../models/convocatoria.model';
 
 @Component({
   selector: 'app-filtros',
@@ -36,6 +39,8 @@ export class FiltrosComponent implements OnChanges {
   /*  emite valores al padre  */
   onAplicar(): void {
     this.aplicarFiltros.emit(this.filtros);
+    
+    
   }
 
   onLimpiar(): void {
@@ -47,7 +52,11 @@ export class FiltrosComponent implements OnChanges {
       fecha: ''
     };
     this.limpiarFiltros.emit();
+
+
   }
 }
+
+
   
 
