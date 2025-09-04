@@ -40,10 +40,29 @@ export class ConvocatoriaService {
     }
 
     return this.http.get<any>(`${this.apiUrl}/busqueda`, { params: defaultParams }).pipe(
-      map(response => this.addEstadoAbierto(response)) // 🔥 Aplicar transformación
-    );
-  }
+       map(response => {
+    if (!response || !response.content) return response;
 
+    // Normalizar organo y sectores
+    response.content = response.content.map((c: any) => ({
+      ...c,
+      organo: {
+        nivel1: c.nivel1,
+        nivel2: c.nivel2,
+        nivel3: c.nivel3
+      },
+      sectores: c.sectores || []
+    }));
+
+    // Aplicar estado abierto
+    return this.addEstadoAbierto(response);
+  })
+);
+  }
+    getConvocatoriaDetalle(id: number): Observable<Convocatoria> {
+    return this.http.get<Convocatoria>(`${this.apiUrl}/${id}`);
+      }
+      
  
 
   /** 🔹 Añade propiedad `abierto` a todas las convocatorias (formato europeo DD/MM/YYYY) */
